@@ -285,13 +285,14 @@ class _PhantomHomeState extends State<PhantomHome> {
     );
   }
 
-  Widget _taskTile(_Task task) {
-    return Container(
-      margin: const EdgeInsets.only(bottom: 9),
-      decoration: BoxDecoration(
-        color: _surface,
-        borderRadius: BorderRadius.circular(16),
-      ),
+
+Widget _taskTile(_Task task) {
+  return Padding(
+    padding: const EdgeInsets.only(bottom: 9),
+    child: Material(
+      color: _surface,
+      borderRadius: BorderRadius.circular(16),
+      clipBehavior: Clip.antiAlias,
       child: CheckboxListTile(
         value: task.done,
         onChanged: (value) => setState(() => task.done = value ?? false),
@@ -305,11 +306,15 @@ class _PhantomHomeState extends State<PhantomHome> {
             color: task.done ? _muted : Colors.white,
           ),
         ),
-        subtitle: Text(task.time,
-            style: const TextStyle(color: _muted, fontSize: 11)),
+        subtitle: Text(
+          task.time,
+          style: const TextStyle(color: _muted, fontSize: 11),
+        ),
       ),
-    );
-  }
+    ),
+  );
+}
+
 
   Widget _habitTile(_Habit habit) {
     return Container(
